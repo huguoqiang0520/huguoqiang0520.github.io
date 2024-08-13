@@ -24,7 +24,7 @@ components:
   # weibo,qq,wechat,douban,qzone,linkedin,facebook,twitter
   share:
     enabled: false
-    hide-platforms: qq,wechat
+    hide-platforms: weibo,qq,wechat
   # 不蒜子访问统计
   busuanzi:
     enabled: false
@@ -82,15 +82,8 @@ navs:
     label: 开源
     mobile-hidden: true
 
-  - href: /fragments/
-    label: 片段
-
   - href: /wiki/
     label: 维基
-
-  - href: /links/
-    label: 链接
-    mobile-hidden: true
 
   - href: /about/
     label: 关于
@@ -110,7 +103,7 @@ index:
     # 首页导航栏文字颜色
     nav-color: "rgba(255, 255, 255, .5)"
     # 首页 banner 区背景颜色
-    background-color: "#4183c4"
+    background-color: "#0A0A0A"
     # 首页 banner 区背景图片
     # background-image: "/assets/images/octicons-bg.png"
     # background-repeat: "no-repeat"
@@ -149,7 +142,7 @@ collections:
 #      Comments    #
 # ---------------- #
 # support provider: disqus, gitment, gitalk, utterances, beaudar, giscus
-comments_provider: giscus
+comments_provider:
 # !!!重要!!! 请修改下面这些信息为你自己申请的
 # !!!Important!!! Please modify infos below to yours
 # disqus 配置参考：https://disqus.com
