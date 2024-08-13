@@ -1,4 +1,15 @@
-
+---
+layout: post
+title: 第二个五年总结系列（3）——方法论：过程资料（上篇）
+categories: [manage]
+description: 自我管理与成长系列
+mermaid: true
+sequence: false
+flow: false
+mathjax: false
+mindmap: false
+mindmap2: false
+---
 
 # Begin
 
