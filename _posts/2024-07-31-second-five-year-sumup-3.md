@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 第二个五年总结系列（3）——方法论：过程资料（上篇）
-categories: [manage]
+title: 第二个五年总结系列（3）——方法论（二）：过程资料（上篇）
+categories: [个人管理]
 description: 自我管理与成长系列
 mermaid: true
 sequence: false
@@ -269,7 +269,7 @@ flowchart LR
 
  我接手聚合登录（其实还包括聚合支付等）时，相关资料几乎为零，因此我从头整理了产品全局视角运行/使用流程图：
 
-![login_origin](./2024-07-31-second-five-year-sumup-3/login_origin.png)
+![login_origin](/_posts/2024-07-31-second-five-year-sumup-3/login_origin.png)
 
  基本运行流程是中间的聚合层面向三方时的角色是一个业务应用的角色，完成三方登录后（4->5->
 6步骤回来）自己存储了用户信息并将自己作为一个三方渠道开始向真实的业务方进行另一套授权。
