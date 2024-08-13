@@ -37,11 +37,11 @@
 .posts-list {
     line-height: 2;
     color: #555;
-    list-style-type: disc;
+    list-style-type:disc;
 }
 
 .posts-list::before {
-    /*    content: " ";*/
+/*    content: " ";*/
     position: absolute;
     left: 0;
     top: 12px;
@@ -105,7 +105,7 @@
     border-bottom-left-radius: 4px;
 }
 
-.list-group-item > .badge {
+.list-group-item>.badge {
     float: right;
 }
 
