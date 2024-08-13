@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="han-init" lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+    <title>{% if page.title %}{{ page.title }} &mdash; {% endif %}{{ site.title }}</title>
+    <link href="{{ assets_base_url }}/assets/vendor/primer-css/css/primer.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/components/collection.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/components/repo-card.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/sections/repo-list.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/components/boxed-group.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/globals/common.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/globals/responsive.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/css/posts/index.css" rel="stylesheet">
+    <link href="{{ assets_base_url }}/assets/vendor/octicons/octicons/octicons.css" rel="stylesheet">
+    {% assign highlight_base_url = 'https://mazhuang.org/rouge-themes/dist' %}
+    {% if site.cdn.jsdelivr.enabled %}
+    {% assign highlight_base_url = 'https://fastly.jsdelivr.net/gh/mzlogin/rouge-themes@master/dist' %}
+    {% endif %}
+    <link href="{{ highlight_base_url }}/{{ site.highlight_theme}}.css" rel="stylesheet">
+    {% if site.components.share.enabled %}
+    <link href="{{ assets_base_url }}/assets/vendor/share.js/dist/css/share.min.css" rel="stylesheet">
+    {% endif %}
+    {% if site.components.fancybox.enabled %}
+    <link href="https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" rel="stylesheet"/>
+    {% endif %}
+    <!-- Latest compiled and minified CSS -->
+    {% for css in page.css %}
+    <link href="{{ assets_base_url }}/assets/css/{{css}}" rel="stylesheet">
+    {% endfor %}
+
+    {% if site.ios_app_name %}
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    {% endif %}
+    <link href="{{ page.url | prepend: site.url }}" rel="canonical">
+    <link href="{{ site.url }}{{ site.subscribe_rss }}" rel="alternate" title="{{ site.title }}"
+          type="application/atom+xml">
+    <link href="{{ assets_base_url }}/favicon.ico" rel="shortcut icon">
+    {% if page.title %}
+    <meta content="{{ page.title }}" property="og:title">
+    {% if page.keywords %}
+    {% assign keywords = page.keywords %}
+    {% else %}
+    {% assign keywords = site.keywords %}
+    {% endif %}
+    <meta content="{{ keywords | strip_html | strip_newlines}}" name="keywords">
+    <meta content="{{ keywords | strip_html | strip_newlines}}" name="og:keywords">
+    {% if page.excerpt %}
+    <meta content="{{ page.excerpt | strip_html | strip_newlines}}" name="description">
+    <meta content="{{ page.excerpt | strip_html | strip_newlines}}" name="og:description">
+    {% else if page.description %}
+    <meta content="{{ page.description | strip_html | strip_newlines}}" name="description">
+    <meta content="{{ page.description | strip_html | strip_newlines}}" name="og:description">
+    {% else if content %}
+    <meta content="{{ content | strip_html | strip_newlines | truncatewords: 100 }}" name="description">
+    <meta content="{{ content | strip_html | strip_newlines | truncatewords: 100 }}" name="og:description">
+    {% endif %}
+    {% else %}
+    <meta content="{{ site.keywords }}" name="keywords">
+    <meta content="{{ site.description }}" name="description">
+    {% endif %}
+    {% if page.og_image_url %}
+    <meta content="{{ page.og_image_url }}" property="og:image">
+    {% else %}
+    {% if page.photo_url %}
+    <meta content="{{ page.photo_url }}" property="og:image">
+    {% endif %}
+    {% endif %}
+    <meta content="{{ site.url }}{{ page.url | remove_first:'index.html' }}" property="og:url">
+    <meta content="{{ site.title }}" property="og:site_name">
+    <meta content="article" property="og:type">
+    <meta content="zh_CN" property="og:locale"/>
+    {% if page.date %}
+    <meta content="{{ page.date | date: '%Y-%m-%d' }}" property="article:published_time">
+    {% endif %}
+
+    <script src="{{ assets_base_url }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ assets_base_url }}/assets/js/main.js"></script>
+
+    {% if site.google.adsense.enabled and site.url contains 'mazhuang.org' %}
+    <script async crossorigin="anonymous"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093222719567591"></script>
+    {% endif %}
+
+    {% if site.google.analytics_id %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google.analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', '{{ site.google.analytics_id }}');
+    </script>
+    {% endif %}
+</head>
+<body class="{{ page.class }}" data-mz="{{ page.class }}">
+<header class="site-header">
+    <div class="container">
+        <h1><a href="{{ site.url }}/" title="{{ site.title }}"><span class="octicon octicon-mark-github"></span> {{
+            site.title }}</a></h1>
+        <button class="collapsed mobile-visible" onclick="toggleMenu();" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <nav class="site-header-nav" role="navigation">
+            {% for nav in site.navs %}
+            <a class="{% if nav.mobile-hidden %}mobile-hidden {% endif %}{% if page.menu == nav.label %}selected {% endif %}site-header-nav-item"
+               href="{{ site.url }}{{ nav.href }}"
+               target="{{ nav.target | default: _self }}" title="{{ nav.label }}">{{ nav.label }}</a>
+            {% endfor %}
+            <a class="mobile-hidden" href="{{ site.url }}{{ site.subscribe_rss }}"><span class="octicon octicon-rss"
+                                                                                         style="color:orange;"></span></a>
+        </nav>
+    </div>
+</header>
+<!-- / header -->
